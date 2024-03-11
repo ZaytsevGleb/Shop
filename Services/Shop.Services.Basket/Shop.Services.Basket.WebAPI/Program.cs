@@ -1,21 +1,19 @@
-using Cryptex.Services.OperationService.WebAPI.Middleware;
+using Common.Logging;
 using FluentValidation;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Shop.Services.Catalog.BusinessLogic.DI;
 using Shop.Services.Catalog.WebAPI.Constants;
 using Shop.Services.Catalog.WebAPI.Mappers;
+using Shop.Services.Catalog.WebAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
 var configuration = builder.Configuration;
-var logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration)
-    .Enrich.FromLogContext()
-    .CreateLogger();
 
 builder.Logging.ClearProviders();
-builder.Logging.AddSerilog(logger);
+builder.Logging.AddSerilog();
+builder.Host.UseSerilog(SeriLogger.Configure);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -4,7 +4,7 @@ using Shop.Services.Catalog.BusinessLogic.Common.Exceptions;
 using Shop.Services.Catalog.WebAPI.Constants;
 using Shop.Services.Catalog.WebAPI.Dtos;
 
-namespace Cryptex.Services.OperationService.WebAPI.Middleware;
+namespace Shop.Services.Catalog.WebAPI.Middleware;
 
 public sealed class CustomExceptionHandlerMiddleware(
     RequestDelegate next,

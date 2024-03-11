@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace Cryptex.Services.OperationService.WebAPI.Middleware;
+namespace Shop.Services.Catalog.WebAPI.Middleware;
 
 public sealed class RequestLoggingMiddleware(
     RequestDelegate next,
