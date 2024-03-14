@@ -7,12 +7,13 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["Shop.Services.Basket.WebAPI/Shop.Services.Basket.WebAPI.csproj", "Shop.Services.Basket.WebAPI/"]
-COPY ["Shop.Services.Basket.BusinessLogic/Shop.Services.Basket.BusinessLogic.csproj", "Shop.Services.Basket.BusinessLogic/"]
-COPY ["Shop.Services.Basket.DataAccess/Shop.Services.Basket.DataAccess.csproj", "Shop.Services.Basket.DataAccess/"]
-RUN dotnet restore "Shop.Services.Basket.WebAPI/Shop.Services.Basket.WebAPI.csproj"
+COPY ["Services/Shop.Services.Basket/Shop.Services.Basket.WebAPI/Shop.Services.Basket.WebAPI.csproj", "Services/Shop.Services.Basket/Shop.Services.Basket.WebAPI/"]
+COPY ["BuildingBlocks/Common.Logging/Common.Logging/Common.Logging.csproj", "BuildingBlocks/Common.Logging/Common.Logging/"]
+COPY ["Services/Shop.Services.Basket/Shop.Services.Basket.BusinessLogic/Shop.Services.Basket.BusinessLogic.csproj", "Services/Shop.Services.Basket/Shop.Services.Basket.BusinessLogic/"]
+COPY ["Services/Shop.Services.Basket/Shop.Services.Basket.DataAccess/Shop.Services.Basket.DataAccess.csproj", "Services/Shop.Services.Basket/Shop.Services.Basket.DataAccess/"]
+RUN dotnet restore "Services/Shop.Services.Basket/Shop.Services.Basket.WebAPI/Shop.Services.Basket.WebAPI.csproj"
 COPY . .
-WORKDIR "/src/Shop.Services.Basket.WebAPI"
+WORKDIR "/src/Services/Shop.Services.Basket/Shop.Services.Basket.WebAPI"
 RUN dotnet build "Shop.Services.Basket.WebAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

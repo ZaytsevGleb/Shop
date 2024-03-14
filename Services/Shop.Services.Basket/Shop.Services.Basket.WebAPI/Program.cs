@@ -1,5 +1,6 @@
 using Common.Logging;
 using FluentValidation;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Shop.Services.Catalog.BusinessLogic.DI;
@@ -56,6 +57,9 @@ builder.Services.AddSwaggerGen(opt =>
         }
     });
 });
+
+builder.Services.AddHealthChecks()
+    .AddRedis(configuration["CacheSettings:ConnectionString"], "Redis Health", HealthStatus.Degraded);   
 
 var app = builder.Build();
 

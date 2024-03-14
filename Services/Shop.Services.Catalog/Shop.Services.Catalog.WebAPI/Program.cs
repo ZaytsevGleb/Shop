@@ -1,5 +1,7 @@
+using Common.Logging;
 using Cryptex.Services.OperationService.WebAPI.Middleware;
 using FluentValidation;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Shop.Services.Catalog.BusinessLogic.DI;
@@ -9,13 +11,9 @@ using Shop.Services.Catalog.WebAPI.Mappers;
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
 var configuration = builder.Configuration;
-var logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration)
-    .Enrich.FromLogContext()
-    .CreateLogger();
 
-builder.Logging.ClearProviders();
-builder.Logging.AddSerilog(logger);
+
+builder.Host.UseSerilog(SeriLogger.Configure);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRouting();
@@ -41,7 +39,7 @@ builder.Services.AddSwaggerGen(opt =>
         BearerFormat = ApiConstants.BearerFormat,
         Scheme = ApiConstants.BearerScheme
     });
-    
+
     opt.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
@@ -58,6 +56,9 @@ builder.Services.AddSwaggerGen(opt =>
     });*/
 });
 
+builder.Services.AddHealthChecks()
+    .AddMongoDb(configuration["MongoDatabase:ConnectionString"], "MongoDb Health", HealthStatus.Degraded);
+
 var app = builder.Build();
 
 if (!env.IsEnvironment(ConfigConstants.Production))
@@ -66,6 +67,7 @@ if (!env.IsEnvironment(ConfigConstants.Production))
     app.UseSwaggerUI();
 }
 
+app.UseSerilogRequestLogging();
 app.UseMiddleware<CustomExceptionHandlerMiddleware>();
 app.UseMiddleware<RequestLoggingMiddleware>();
 // app.MapIdentityApi<User>();

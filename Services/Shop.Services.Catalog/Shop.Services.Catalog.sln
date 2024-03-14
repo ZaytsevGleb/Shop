@@ -8,7 +8,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Services.Catalog.DataA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Services.Catalog.Shared", "Shop.Services.Catalog.Shared\Shop.Services.Catalog.Shared.csproj", "{483C7382-F98F-4DE7-9195-B6BD9943CEF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shop.Services.Catalog.ExternalService", "Shop.Services.Catalog.ExternalService\Shop.Services.Catalog.ExternalService.csproj", "{0D89A250-28F0-4A53-9AA9-D0CF98072EBC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A01A38E8-65EE-4AC6-AA98-7BC17631E962}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,10 +35,6 @@ Global
 		{483C7382-F98F-4DE7-9195-B6BD9943CEF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{483C7382-F98F-4DE7-9195-B6BD9943CEF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{483C7382-F98F-4DE7-9195-B6BD9943CEF0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0D89A250-28F0-4A53-9AA9-D0CF98072EBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D89A250-28F0-4A53-9AA9-D0CF98072EBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0D89A250-28F0-4A53-9AA9-D0CF98072EBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D89A250-28F0-4A53-9AA9-D0CF98072EBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
