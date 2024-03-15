@@ -43,10 +43,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Validators\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\..\..\BuildingBlocks\Common.Logging\Common.Logging\Common.Logging.csproj" />
       <ProjectReference Include="..\Shop.Services.Basket.BusinessLogic\Shop.Services.Basket.BusinessLogic.csproj" />
     </ItemGroup>

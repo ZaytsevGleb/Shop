@@ -1,16 +1,19 @@
+using System.Xml.Schema;
 using Common.Logging;
 using FluentValidation;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Shop.Services.Catalog.BusinessLogic.DI;
 using Shop.Services.Catalog.WebAPI.Constants;
+using Shop.Services.Catalog.WebAPI.Handlers;
 using Shop.Services.Catalog.WebAPI.Mappers;
 using Shop.Services.Catalog.WebAPI.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
-var configuration = builder.Configuration;
+var configuration = builder.Configuration ?? throw new ArgumentException("Configuration is null");
 
 builder.Logging.ClearProviders();
 builder.Logging.AddSerilog();
@@ -57,9 +60,8 @@ builder.Services.AddSwaggerGen(opt =>
         }
     });
 });
-
 builder.Services.AddHealthChecks()
-    .AddRedis(configuration["CacheSettings:ConnectionString"], "Redis Health", HealthStatus.Degraded);   
+    .AddRedis(configuration["CacheSettings:ConnectionString"], "Redis Health", HealthStatus.Degraded);
 
 var app = builder.Build();
 

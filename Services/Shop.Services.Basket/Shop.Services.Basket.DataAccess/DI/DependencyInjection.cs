@@ -10,18 +10,12 @@ public static class DependencyInjection
 {
     public static void AddDataAccessDependencies(this IServiceCollection services, IConfiguration configuration)
     {
-        // services.AddDbContext<ApplicationDbContext>(opt =>
-        // {
-        //     opt.UseNpgsql(configuration.GetConnectionString(DataAccessConstants.DbConnection));
-        //     opt.EnableSensitiveDataLogging();
-        //     opt.AddInterceptors(new EntityDateTrackingInterceptor());
-        // });
-
         services.AddStackExchangeRedisCache(opt =>
         {
-            opt.Configuration = configuration.GetConnectionString(DataAccessConstants.RedisConnection);
+            opt.Configuration = configuration[DataAccessConstants.RedisConnection]
+                                ?? throw new ArgumentNullException("Configuration IS NULL!!!!!!!!!!!!!!!!!!");
         });
-        services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
         services.AddScoped<ICacheRepository, CacheRepository>();
     }
 }

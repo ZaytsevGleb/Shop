@@ -35,9 +35,9 @@ services:
 
   basketdb:
     container_name: basketdb
-    restart: always
+    restart: always    
     ports:
-       - "6379:6379"
+        - "6379:6379"
 
   elasticsearch:
     container_name: elasticsearch
@@ -58,4 +58,4 @@ services:
     depends_on:
         - elasticsearch
     ports:
-        - "5601:5601"  
+        - "5601:5601"

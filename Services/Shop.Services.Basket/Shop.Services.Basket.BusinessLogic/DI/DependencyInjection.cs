@@ -14,6 +14,6 @@ public static class DependencyInjection
         services.AddDataAccessDependencies(configuration);
         services.AddAutoMapper(typeof(MappingProfile));
 
-        services.AddScoped<Abstractions.IBasketService, BasketService>();
+        services.AddScoped<IBasketService, BasketService>();
     }
 }
