@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Shop.Services.Basket.ExternalService.DI;
 using Shop.Services.Catalog.BusinessLogic.Abstractions;
 using Shop.Services.Catalog.BusinessLogic.Mappers;
 using Shop.Services.Catalog.BusinessLogic.Services;
@@ -12,6 +13,7 @@ public static class DependencyInjection
     public static void AddApplicationDependencies(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddDataAccessDependencies(configuration);
+        services.AddDataExternalServiceDependencies(configuration);
         services.AddAutoMapper(typeof(MappingProfile));
 
         services.AddScoped<IBasketService, BasketService>();

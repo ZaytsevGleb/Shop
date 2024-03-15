@@ -13,7 +13,7 @@ public static class DependencyInjection
         services.AddStackExchangeRedisCache(opt =>
         {
             opt.Configuration = configuration[DataAccessConstants.RedisConnection]
-                                ?? throw new ArgumentNullException("Configuration IS NULL!!!!!!!!!!!!!!!!!!");
+                                ?? throw new ArgumentNullException(nameof(DataAccessConstants.RedisConnection));
         });
 
         services.AddScoped<ICacheRepository, CacheRepository>();

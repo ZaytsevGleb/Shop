@@ -18,6 +18,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Shop.Services.Basket.DataAccess\Shop.Services.Basket.DataAccess.csproj" />
+      <ProjectReference Include="..\Shop.Services.Basket.ExternalService\Shop.Services.Basket.ExternalService.csproj" />
     </ItemGroup>
 
 </Project>
